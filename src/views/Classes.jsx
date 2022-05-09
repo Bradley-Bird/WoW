@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route, useParams } from 'react-router-dom';
+import ClassFocus from '../components/ClassFocus';
 import { fetchClasses } from '../services/directQuery';
 
 function Classes() {
+  const { id } = useParams();
   const [classes, setClasses] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchClasses();
-      console.log(data);
       setClasses(data.classes);
     };
     fetchData();
@@ -17,9 +18,14 @@ function Classes() {
     <>
       <ul>
         {classes.map((c) => (
-          <li key={c.id}>{c.name}</li>
+          <Link to={`/classes/${c.id}`} key={c.id}>
+            <li key={c.id}>{c.name}</li>
+          </Link>
         ))}
       </ul>
+      <Route path="/classes/:id">
+        <ClassFocus />
+      </Route>
     </>
   );
 }
