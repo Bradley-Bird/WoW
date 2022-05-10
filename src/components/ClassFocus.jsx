@@ -28,9 +28,12 @@ function ClassFocus({ path }) {
       ) : (
         <div>
           <h1>{cclass.name}</h1>
-          <img src={classMedia.assets[0].value} />
+          <img
+            src={classMedia.assets[0].value}
+            alt={`an image of a ${cclass.name} symbol`}
+          />
           <h4>Specializations</h4>
-          <ul>
+          <ul name="specList">
             {spec.map((spec) => (
               <Link to={`${path}/${id}/spec/${spec.id}`} key={spec.id}>
                 <li key={spec.id}>{spec.name}</li>
