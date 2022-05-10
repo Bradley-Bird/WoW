@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Route, useParams } from 'react-router-dom';
+import { Link, Route, useHistory } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom';
 import ClassFocus from '../components/ClassFocus';
+import SpecFocus from '../components/SpecFocus';
 import { fetchClasses } from '../services/directQuery';
 
 function Classes() {
-  const { id } = useParams();
+  const history = useHistory();
+
+  const { path } = useRouteMatch();
+  // console.log('url', url, 'path', path);
+
   const [classes, setClasses] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -23,9 +29,16 @@ function Classes() {
           </Link>
         ))}
       </ul>
-      <Route path="/classes/:id">
-        <ClassFocus />
-      </Route>
+      <section>
+        <Route path="/classes/:id">
+          <ClassFocus path={path} />
+        </Route>
+      </section>
+      <section>
+        <Route path="/classes/:id/spec/:sid">
+          <SpecFocus />
+        </Route>
+      </section>
     </>
   );
 }

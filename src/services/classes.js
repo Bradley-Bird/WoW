@@ -3,8 +3,7 @@ const auth = process.env.ACCESS_TOKEN;
 
 export async function fetchClasses() {
   const resp = await api.query('/data/wow/playable-class/index');
-  const data = resp.json();
-  return data;
+  return resp;
 }
 export async function fetchClassById(id) {
   const resp = await api.query(
