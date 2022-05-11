@@ -24,3 +24,4 @@ export const api = new BlizzAPI({
 //   const accessBlizz = await tokenResponse.json();
 //   return accessBlizz;
 // }
+//secrets
